@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Bmob_Demo</string>
+    <string name="add_but1">增加數據</string>
+    <string name="delete_but1">刪除數據</string>
+    <string name="change_but1">改動數據</string>
+    <string name="search_but1">查找數據</string>
+    <string name="hint_text">數據會顯示在此</string>
+</resources>
