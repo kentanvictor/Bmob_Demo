@@ -25,9 +25,9 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     private EditText addName;
     private EditText addAddress;
     private EditText addPhone;
-    private String name = "abc";
-    private String address = "China";
-    private int number = 123;
+    private String name;
+    private String address;
+    private int number;
     private static final String TAG = "bao";
 
     @Override
