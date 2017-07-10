@@ -45,21 +45,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.add_but:
-                Person p2 = new Person();
-                p2.setName("KenTan");
-                p2.setAddress("廣東廣州");
-                p2.save(new SaveListener<String>() {
-                    @Override
-                    public void done(String objectId, BmobException e) {
-                        if (e == null) {
-                            Toast.makeText(MainActivity.this, "添加数据成功，返回objectId为：" + objectId, Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(MainActivity.this, "创建数据失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                addSingleData();
                 break;
             case R.id.delete_but1:
+                deleteSingleData();
                 break;
             case R.id.change_but1:
                 changeSingleData();
@@ -71,24 +60,57 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
-    //修改單條數據
-    public void changeSingleData()
+
+    //增加單條數據
+    public void addSingleData() {
+        Person p2 = new Person();
+        p2.setName("KenTan");
+        p2.setAddress("廣東廣州");
+        p2.save(new SaveListener<String>() {
+            @Override
+            public void done(String objectId, BmobException e) {
+                if (e == null) {
+                    Toast.makeText(MainActivity.this, "添加数据成功，返回objectId为：" + objectId, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "创建数据失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+    //刪除單條數據
+    public void deleteSingleData()
     {
+        final Person p3 = new Person();
+        p3.setObjectId("5b57698a36");
+        p3.delete(new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if(e == null)
+                {
+                    showToast("刪除數據成功:"+p3.getUpdatedAt());
+                }else
+                {
+                    showToast("刪除數據失敗:"+e.getMessage());
+                }
+            }
+        });
+    }
+    //修改單條數據
+    public void changeSingleData() {
         final Person p1 = new Person();
         p1.setAddress("上海虹橋");
         p1.update("5b57698a36", new UpdateListener() {
             @Override
             public void done(BmobException e) {
-                if(e == null)
-                {
-                    showToast("更新成功"+p1.getUpdatedAt());
-                }else
-                {
-                    showToast("更新失敗"+e.getMessage());
+                if (e == null) {
+                    showToast("更新成功" + p1.getUpdatedAt());
+                } else {
+                    showToast("更新失敗" + e.getMessage());
                 }
             }
         });
     }
+
     //查詢單條數據
     public void querySingleData() {
         BmobQuery<Person> p1 = new BmobQuery<Person>();
@@ -104,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
+
     //Toast
     public void showToast(CharSequence text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
