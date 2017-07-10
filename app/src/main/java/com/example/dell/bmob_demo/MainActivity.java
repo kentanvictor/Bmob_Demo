@@ -1,5 +1,6 @@
 package com.example.dell.bmob_demo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,7 +12,6 @@ import com.example.dell.bmob_demo.json.Person;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.QueryListener;
-import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.add_but:
-                addSingleData();
+                Intent intent = new Intent(MainActivity.this,AddActivity.class);
+                startActivity(intent);
                 break;
             case R.id.delete_but1:
                 deleteSingleData();
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    //增加單條數據
+   /* //增加單條數據
     public void addSingleData() {
         Person p2 = new Person();
         p2.setName("KenTan");
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         });
-    }
+    }*/
 
     //刪除單條數據
     public void deleteSingleData() {
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //查詢單條數據
     public void querySingleData() {
-        BmobQuery<Person> p1 = new BmobQuery<Person>();
+        BmobQuery<Person> p1 = new BmobQuery<>();
         p1.getObject("e3a9364d52", new QueryListener<Person>() {
             @Override
             public void done(Person person, BmobException e) {
