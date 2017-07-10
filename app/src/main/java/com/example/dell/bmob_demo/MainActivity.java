@@ -60,24 +60,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-   /* //增加單條數據
-    public void addSingleData() {
-        Person p2 = new Person();
-        p2.setName("KenTan");
-        p2.setAddress("廣東廣州");
-        p2.setPhoneNumber(1234567890);
-        p2.save(new SaveListener<String>() {
-            @Override
-            public void done(String objectId, BmobException e) {
-                if (e == null) {
-                    Toast.makeText(MainActivity.this, "添加数据成功，返回objectId为：" + objectId, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(MainActivity.this, "创建数据失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }*/
-
     //刪除單條數據
     public void deleteSingleData() {
         final Person p3 = new Person();
