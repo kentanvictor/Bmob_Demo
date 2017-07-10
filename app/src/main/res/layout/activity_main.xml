@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.dell.bmob_demo.MainActivity">
+    <include layout="@layout/include_add_top_bar"/>
 
     <TextView
         android:layout_width="match_parent"

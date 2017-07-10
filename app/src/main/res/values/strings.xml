@@ -5,4 +5,7 @@
     <string name="change_but1">改動數據</string>
     <string name="search_but1">查找數據</string>
     <string name="hint_text">數據會顯示在此</string>
+    <string name="name_edit1">姓 名</string>
+    <string name="address_edit1">家庭住址</string>
+    <string name="phone_edit1">電 話</string>
 </resources>

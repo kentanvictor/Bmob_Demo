@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import com.example.dell.bmob_demo.json.Person;
 
-import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.QueryListener;
@@ -21,12 +20,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button change;
     private Button search;
     private Object QueryListener;
+    private String objectId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Bmob.initialize(this, "fc49e0d873ae4a3d3abf55f7062ed079");
         init();
         add.setOnClickListener(this);
         search.setOnClickListener(this);
@@ -66,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Person p2 = new Person();
         p2.setName("KenTan");
         p2.setAddress("廣東廣州");
+        p2.setPhoneNumber(1234567890);
         p2.save(new SaveListener<String>() {
             @Override
             public void done(String objectId, BmobException e) {
@@ -77,29 +77,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
+
     //刪除單條數據
-    public void deleteSingleData()
-    {
+    public void deleteSingleData() {
         final Person p3 = new Person();
-        p3.setObjectId("5b57698a36");
+        p3.setObjectId("e3a9364d52");
         p3.delete(new UpdateListener() {
             @Override
             public void done(BmobException e) {
-                if(e == null)
-                {
-                    showToast("刪除數據成功:"+p3.getUpdatedAt());
-                }else
-                {
-                    showToast("刪除數據失敗:"+e.getMessage());
+                if (e == null) {
+                    showToast("刪除數據成功:" + p3.getUpdatedAt());
+                } else {
+                    showToast("刪除數據失敗:" + e.getMessage());
                 }
             }
         });
     }
+
     //修改單條數據
     public void changeSingleData() {
         final Person p1 = new Person();
         p1.setAddress("上海虹橋");
-        p1.update("5b57698a36", new UpdateListener() {
+        p1.update("e3a9364d52", new UpdateListener() {
             @Override
             public void done(BmobException e) {
                 if (e == null) {
@@ -114,11 +113,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //查詢單條數據
     public void querySingleData() {
         BmobQuery<Person> p1 = new BmobQuery<Person>();
-        p1.getObject("5b57698a36", new QueryListener<Person>() {
+        p1.getObject("e3a9364d52", new QueryListener<Person>() {
             @Override
             public void done(Person person, BmobException e) {
                 if (e == null) {
-                    showToast("查詢成功" + person.getObjectId());
+                    showToast("查詢成功!" + person.getAddress());
                 } else {
                     showToast("查詢失敗:" + e.getMessage());
 
