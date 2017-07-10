@@ -3,14 +3,22 @@ package com.example.dell.bmob_demo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.dell.bmob_demo.json.Person;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import cn.bmob.v3.BmobBatch;
+import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.datatype.BatchResult;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.QueryListListener;
 import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.UpdateListener;
 
@@ -59,7 +67,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
-
+    //批量添加數據
+    public void addPlentyData()
+    {
+        List<BmobObject> persons = new ArrayList<>();
+        for(int i = 0;i < 3;i++)
+        {
+            Person person = new Person();
+            person.setName("張三"+i);
+            persons.add(person);
+        }
+        //v.3.5.0之後開始提供的批量添加數據方法
+        new BmobBatch().insertBatch(persons).doBatch(new QueryListListener<BatchResult>() {
+            @Override
+            public void done(List<BatchResult> list, BmobException e) {
+                if(e == null)
+                {
+                    for(int i = 0;i < list.size();i++)
+                    {
+                        BatchResult result = list.get(i);
+                        BmobException ex = result.getError();
+                        if(ex == null)
+                        {
+                            showToast("第"+i+"個數據批量添加成功:"+result.getCreatedAt()+","+result.getObjectId()+","+result.getUpdatedAt());
+                        }else
+                        {
+                            showToast("第"+i+"个数据批量添加失败："+ex.getMessage()+","+ex.getErrorCode());
+                        }
+                    }
+                }else
+                {
+                    Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
+                }
+            }
+        });
+    }
     //刪除單條數據
     public void deleteSingleData() {
         final Person p3 = new Person();
