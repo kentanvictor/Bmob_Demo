@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button change;
     private Button search;
     private Object QueryListener;
-    private String objectId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
