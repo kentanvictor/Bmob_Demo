@@ -13,6 +13,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Button add;
@@ -29,9 +30,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         init();
         add.setOnClickListener(this);
         search.setOnClickListener(this);
+        delete.setOnClickListener(this);
+        change.setOnClickListener(this);
     }
-    public void init()
-    {
+
+    public void init() {
         add = (Button) findViewById(R.id.add_but);
         delete = (Button) findViewById(R.id.delete_but1);
         change = (Button) findViewById(R.id.change_but1);
@@ -40,18 +43,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId())
-        {
+        switch (v.getId()) {
             case R.id.add_but:
                 Person p2 = new Person();
                 p2.setName("KenTan");
                 p2.setAddress("廣東廣州");
                 p2.save(new SaveListener<String>() {
                     @Override
-                    public void done(String objectId,BmobException e) {
-                        if(e==null){
-                            Toast.makeText(MainActivity.this, "添加数据成功，返回objectId为："+objectId, Toast.LENGTH_SHORT).show();
-                        }else{
+                    public void done(String objectId, BmobException e) {
+                        if (e == null) {
+                            Toast.makeText(MainActivity.this, "添加数据成功，返回objectId为：" + objectId, Toast.LENGTH_SHORT).show();
+                        } else {
                             Toast.makeText(MainActivity.this, "创建数据失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.delete_but1:
                 break;
             case R.id.change_but1:
+                changeSingleData();
                 break;
             case R.id.search_but1:
                 querySingleData();
@@ -68,27 +71,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
-    //Toast
-    public void showToast(CharSequence text ){
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-    }
-    //查詢單條數據
-    public void querySingleData()
+    //修改單條數據
+    public void changeSingleData()
     {
-        BmobQuery<Person> p1 = new BmobQuery<Person>();
-        p1.getObject("5b57698a36",new QueryListener<Person>()
-        {
+        final Person p1 = new Person();
+        p1.setAddress("上海虹橋");
+        p1.update("5b57698a36", new UpdateListener() {
             @Override
-            public void done(Person person, BmobException e) {
+            public void done(BmobException e) {
                 if(e == null)
                 {
-                    showToast("查詢成功"+person.getObjectId());
+                    showToast("更新成功"+p1.getUpdatedAt());
                 }else
                 {
-                    showToast("查詢失敗:"+e.getMessage());
+                    showToast("更新失敗"+e.getMessage());
+                }
+            }
+        });
+    }
+    //查詢單條數據
+    public void querySingleData() {
+        BmobQuery<Person> p1 = new BmobQuery<Person>();
+        p1.getObject("5b57698a36", new QueryListener<Person>() {
+            @Override
+            public void done(Person person, BmobException e) {
+                if (e == null) {
+                    showToast("查詢成功" + person.getObjectId());
+                } else {
+                    showToast("查詢失敗:" + e.getMessage());
 
                 }
             }
         });
     }
+    //Toast
+    public void showToast(CharSequence text) {
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+
 }
