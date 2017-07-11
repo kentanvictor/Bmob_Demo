@@ -77,7 +77,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         List<BmobObject> persons = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             Person person = new Person();
-            person.setName("張三" + i);
+            person.setName("張三");
+            person.setAddress("北京海淀");
             persons.add(person);
         }
         //v.3.5.0之後開始提供的批量添加數據方法
@@ -89,9 +90,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         BatchResult result = list.get(i);
                         BmobException ex = result.getError();
                         if (ex == null) {
-                            showToast("第" + i + "個數據批量添加成功:" + result.getCreatedAt() + "," + result.getObjectId() + "," + result.getUpdatedAt());
+                            showToast("第" + (i+1) + "個數據批量添加成功:" + result.getCreatedAt() + "," + result.getObjectId() + "," + result.getUpdatedAt());
                         } else {
-                            showToast("第" + i + "个数据批量添加失败：" + ex.getMessage() + "," + ex.getErrorCode());
+                            showToast("第" + (i+1) + "个数据批量添加失败：" + ex.getMessage() + "," + ex.getErrorCode());
                         }
                     }
                 } else {
@@ -159,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void queryPlentyData() {
         BmobQuery<Person> query = new BmobQuery<>();
         //查詢name中叫張三的數據
-        query.addWhereEqualTo("name", "張三0");
+        query.addWhereEqualTo("name", "張三");
         //返回50條數據,如果不加上這句,默認返回10條
         query.setLimit(50);
         //執行查詢方法
