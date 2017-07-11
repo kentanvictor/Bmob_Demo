@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Object objectId;
     private String createdAt;
     private String address;
-    private String age;
+    private int age;
     private String phoneNumber;
 
     @Override
@@ -163,8 +163,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //查詢多條數據
     public void queryPlentyData() {
         BmobQuery<Person> query = new BmobQuery<>();
-        //查詢name中叫張三的數據
+        //查詢name中叫KenTan的數據
         query.addWhereEqualTo("name", "KenTan");
+        query.addWhereLessThan("age", 50);//條件:年齡小於50歲
         //返回50條數據,如果不加上這句,默認返回10條
         query.setLimit(50);
         //執行查詢方法
@@ -186,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         age = p2.getAge();
                         //獲取number
                         phoneNumber = p2.getPhoneNumber();
-                        showToast("數據為:\n" + name + "\n" + "Phone NUmber:" + phoneNumber + "\n" + "Address:" +address + "\n" + createdAt + "\n" + age);
+                        showToast("數據為:\n" + name + "\n" + "Phone NUmber:" + phoneNumber + "\n" + "Address:" + address + "\n" + "Age:" + age + "\n" + createdAt);
                     }
                 } else {
                     showToast("張三查詢失敗:" + e.getMessage() + "," + e.getErrorCode());

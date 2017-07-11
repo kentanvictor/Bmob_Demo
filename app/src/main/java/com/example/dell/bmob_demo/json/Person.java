@@ -10,7 +10,7 @@ public class Person extends BmobObject {
     private String name;
     private String address;
     private String phoneNumber;
-    private String age;
+    private int age;
 
     public String getName() {
         return name;
@@ -36,11 +36,11 @@ public class Person extends BmobObject {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 

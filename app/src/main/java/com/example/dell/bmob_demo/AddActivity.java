@@ -29,7 +29,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     private String name;
     private String address;
     private String number;
-    private String age;
+    private int age;
     private static final String TAG = "bao";
 
     @Override
@@ -45,16 +45,16 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_back:
-                Intent intent = new Intent(AddActivity.this,MainActivity.class);
+                Intent intent = new Intent(AddActivity.this, MainActivity.class);
                 startActivity(intent);
                 break;
             case R.id.btn_true:
                 name = addName.getText().toString();
                 address = addAddress.getText().toString();
                 number = addPhone.getText().toString();
-                age = addAge.getText().toString();
+                age = Integer.parseInt(addAge.getText().toString());
                 Log.i(TAG, "onClick: " + name);
-                addSingleData(name, address, number,age);
+                addSingleData(name, address, number, age);
                 break;
             default:
                 break;
@@ -71,7 +71,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     }
 
     //增加單條數據
-    public void addSingleData(String name, String address, String number, String age) {
+    public void addSingleData(String name, String address, String number, int age) {
         Person p2 = new Person();
         p2.setName(name);
         p2.setAddress(address);
