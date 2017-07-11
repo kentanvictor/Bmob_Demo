@@ -1,5 +1,6 @@
 package com.example.dell.bmob_demo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String name;
     private Object objectId;
     private String createdAt;
+    private String address;
+    private int age;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +56,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.add_but:
-                /*Intent intent = new Intent(MainActivity.this, AddActivity.class);
-                startActivity(intent);*/
-                addPlentyData();
+                Intent intent = new Intent(MainActivity.this, AddActivity.class);
+                startActivity(intent);
+//                addPlentyData();
                 break;
             case R.id.delete_but1:
                 deleteSingleData();
@@ -176,7 +179,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         objectId = p2.getObjectId();
                         //獲取createdAt數據創建時間(注意:是createdAt,不是createAt)
                         createdAt = p2.getCreatedAt();
-                        showToast("數據為:"+name + objectId + createdAt);
+                        //獲取address
+                        address = p2.getAddress();
+                        //獲取age
+                        age = p2.getAge();
+                        showToast("數據為:\n"+name+"\n" + objectId+"\n" + createdAt+"\n"+address+"\n"+age);
                     }
                 }else
                 {
