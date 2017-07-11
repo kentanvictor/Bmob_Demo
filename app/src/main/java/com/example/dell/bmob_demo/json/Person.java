@@ -9,8 +9,8 @@ import cn.bmob.v3.BmobObject;
 public class Person extends BmobObject {
     private String name;
     private String address;
-    private int phoneNumber;
-    private int age;
+    private String phoneNumber;
+    private String age;
 
     public String getName() {
         return name;
@@ -28,19 +28,19 @@ public class Person extends BmobObject {
         this.address = address;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 

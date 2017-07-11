@@ -8,4 +8,5 @@
     <string name="name_edit1">姓 名</string>
     <string name="address_edit1">家庭住址</string>
     <string name="phone_edit1">電 話</string>
+    <string name="age_edit1">年 齡</string>
 </resources>

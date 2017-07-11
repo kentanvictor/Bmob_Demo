@@ -25,9 +25,11 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     private EditText addName;
     private EditText addAddress;
     private EditText addPhone;
+    private EditText addAge;
     private String name;
     private String address;
-    private int number;
+    private String number;
+    private String age;
     private static final String TAG = "bao";
 
     @Override
@@ -49,9 +51,10 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
             case R.id.btn_true:
                 name = addName.getText().toString();
                 address = addAddress.getText().toString();
-                number = Integer.parseInt(addPhone.getText().toString());
+                number = addPhone.getText().toString();
+                age = addAge.getText().toString();
                 Log.i(TAG, "onClick: " + name);
-                addSingleData(name, address, number);
+                addSingleData(name, address, number,age);
                 break;
             default:
                 break;
@@ -64,14 +67,16 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         addName = (EditText) findViewById(R.id.name_edit1);
         addAddress = (EditText) findViewById(R.id.address_edit1);
         addPhone = (EditText) findViewById(R.id.phone_number);
+        addAge = (EditText) findViewById(R.id.age_edit1);
     }
 
     //增加單條數據
-    public void addSingleData(String name, String address, int number) {
+    public void addSingleData(String name, String address, String number, String age) {
         Person p2 = new Person();
         p2.setName(name);
         p2.setAddress(address);
         p2.setPhoneNumber(number);
+        p2.setAge(age);
         p2.save(new SaveListener<String>() {
             @Override
             public void done(String objectId, BmobException e) {

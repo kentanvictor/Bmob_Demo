@@ -28,4 +28,12 @@
         android:hint="@string/phone_edit1"
         android:inputType="phone" />
 
+    <EditText
+        android:id="@+id/age_edit1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="@string/age_edit1"
+        android:inputType="number" />
+
 </LinearLayout>

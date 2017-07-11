@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Object objectId;
     private String createdAt;
     private String address;
-    private int age;
+    private String age;
+    private String phoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,9 +94,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         BatchResult result = list.get(i);
                         BmobException ex = result.getError();
                         if (ex == null) {
-                            showToast("第" + (i+1) + "個數據批量添加成功:" + result.getCreatedAt() + "," + result.getObjectId() + "," + result.getUpdatedAt());
+                            showToast("第" + (i + 1) + "個數據批量添加成功:" + result.getCreatedAt() + "," + result.getObjectId() + "," + result.getUpdatedAt());
                         } else {
-                            showToast("第" + (i+1) + "个数据批量添加失败：" + ex.getMessage() + "," + ex.getErrorCode());
+                            showToast("第" + (i + 1) + "个数据批量添加失败：" + ex.getMessage() + "," + ex.getErrorCode());
                         }
                     }
                 } else {
@@ -163,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void queryPlentyData() {
         BmobQuery<Person> query = new BmobQuery<>();
         //查詢name中叫張三的數據
-        query.addWhereEqualTo("name", "張三");
+        query.addWhereEqualTo("name", "KenTan");
         //返回50條數據,如果不加上這句,默認返回10條
         query.setLimit(50);
         //執行查詢方法
@@ -183,11 +184,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         address = p2.getAddress();
                         //獲取age
                         age = p2.getAge();
-                        showToast("數據為:\n"+name+"\n" + objectId+"\n" + createdAt+"\n"+address+"\n"+age);
+                        //獲取number
+                        phoneNumber = p2.getPhoneNumber();
+                        showToast("數據為:\n" + name + "\n" + "Phone NUmber:" + phoneNumber + "\n" + "Address:" +address + "\n" + createdAt + "\n" + age);
                     }
-                }else
-                {
-                    showToast("張三查詢失敗:"+e.getMessage()+","+e.getErrorCode());
+                } else {
+                    showToast("張三查詢失敗:" + e.getMessage() + "," + e.getErrorCode());
                 }
 
             }
