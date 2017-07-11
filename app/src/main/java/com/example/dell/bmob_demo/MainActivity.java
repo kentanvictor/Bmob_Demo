@@ -1,6 +1,5 @@
 package com.example.dell.bmob_demo;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -18,6 +17,7 @@ import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BatchResult;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.QueryListListener;
 import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.UpdateListener;
@@ -27,7 +27,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button delete;
     private Button change;
     private Button search;
-    private Object QueryListener;
+    private String name;
+    private Object objectId;
+    private String createdAt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +53,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.add_but:
-                Intent intent = new Intent(MainActivity.this, AddActivity.class);
-                startActivity(intent);
+                /*Intent intent = new Intent(MainActivity.this, AddActivity.class);
+                startActivity(intent);*/
+                addPlentyData();
                 break;
             case R.id.delete_but1:
                 deleteSingleData();
@@ -61,47 +64,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 changeSingleData();
                 break;
             case R.id.search_but1:
-                querySingleData();
+                /*querySingleData();*/
+                queryPlentyData();
                 break;
             default:
                 break;
         }
     }
+
     //批量添加數據
-    public void addPlentyData()
-    {
+    public void addPlentyData() {
         List<BmobObject> persons = new ArrayList<>();
-        for(int i = 0;i < 3;i++)
-        {
+        for (int i = 0; i < 3; i++) {
             Person person = new Person();
-            person.setName("張三"+i);
+            person.setName("張三" + i);
             persons.add(person);
         }
         //v.3.5.0之後開始提供的批量添加數據方法
         new BmobBatch().insertBatch(persons).doBatch(new QueryListListener<BatchResult>() {
             @Override
             public void done(List<BatchResult> list, BmobException e) {
-                if(e == null)
-                {
-                    for(int i = 0;i < list.size();i++)
-                    {
+                if (e == null) {
+                    for (int i = 0; i < list.size(); i++) {
                         BatchResult result = list.get(i);
                         BmobException ex = result.getError();
-                        if(ex == null)
-                        {
-                            showToast("第"+i+"個數據批量添加成功:"+result.getCreatedAt()+","+result.getObjectId()+","+result.getUpdatedAt());
-                        }else
-                        {
-                            showToast("第"+i+"个数据批量添加失败："+ex.getMessage()+","+ex.getErrorCode());
+                        if (ex == null) {
+                            showToast("第" + i + "個數據批量添加成功:" + result.getCreatedAt() + "," + result.getObjectId() + "," + result.getUpdatedAt());
+                        } else {
+                            showToast("第" + i + "个数据批量添加失败：" + ex.getMessage() + "," + ex.getErrorCode());
                         }
                     }
-                }else
-                {
-                    Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
+                } else {
+                    Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
                 }
             }
         });
     }
+
     //刪除單條數據
     public void deleteSingleData() {
         final Person p3 = new Person();
@@ -134,6 +133,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
+    //批量更新數據
+    public void updatePlentyData() {
+        List<BmobObject> persons = new ArrayList<>();
+        Person p1 = new Person();
+    }
+
     //查詢單條數據
     public void querySingleData() {
         BmobQuery<Person> p1 = new BmobQuery<>();
@@ -146,6 +151,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     showToast("查詢失敗:" + e.getMessage());
 
                 }
+            }
+        });
+    }
+
+    //查詢多條數據
+    public void queryPlentyData() {
+        BmobQuery<Person> query = new BmobQuery<>();
+        //查詢name中叫張三的數據
+        query.addWhereEqualTo("name", "張三0");
+        //返回50條數據,如果不加上這句,默認返回10條
+        query.setLimit(50);
+        //執行查詢方法
+        query.findObjects(new FindListener<Person>() {
+            @Override
+            public void done(List<Person> list, BmobException e) {
+                if (e == null) {
+                    showToast("查询成功：共" + list.size() + "条数据。");
+                    for (Person p2 : list) {
+                        //獲取Name的信息
+                        name = p2.getName();
+                        //獲取數據的objectId的信息
+                        objectId = p2.getObjectId();
+                        //獲取createdAt數據創建時間(注意:是createdAt,不是createAt)
+                        createdAt = p2.getCreatedAt();
+                        showToast("數據為:"+name + objectId + createdAt);
+                    }
+                }else
+                {
+                    showToast("張三查詢失敗:"+e.getMessage()+","+e.getErrorCode());
+                }
+
             }
         });
     }
