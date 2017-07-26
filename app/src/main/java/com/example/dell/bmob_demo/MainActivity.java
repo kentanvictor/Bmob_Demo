@@ -1,6 +1,5 @@
 package com.example.dell.bmob_demo;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -21,6 +20,7 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.QueryListListener;
 import cn.bmob.v3.listener.QueryListener;
+import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -57,9 +57,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.add_but:
-                Intent intent = new Intent(MainActivity.this, AddActivity.class);
-                startActivity(intent);
-//                addPlentyData();
+                addUnique();
+//                Intent intent = new Intent(MainActivity.this, AddActivity.class);
+//                startActivity(intent);
+////                addPlentyData();
                 break;
             case R.id.delete_but1:
                 deleteSingleData();
@@ -194,6 +195,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
 
             }
+        });
+    }
+
+    //添加數組數據
+    public void addUnique() {
+        Person p = new Person();
+        p.setObjectId("d32143db92");
+        //添加String类型的数组
+        p.add("hobbys", "唱歌"); // 添加单个String
+        //p.addAll("hobbys", Arrays.asList("游泳", "看书"));    // 添加多个String
+        //添加Object类型的数组
+        p.add("cards", new Person.BankCard("工行卡", "工行卡账号")); //添加单个Object
+        List<Person.BankCard> cards = new ArrayList<Person.BankCard>();
+        for (int i = 0; i < 2; i++) {
+            cards.add(new Person.BankCard("建行卡" + i, "建行卡账号" + i));
+        }
+        //p.addAll("cards", cards);                            //添加多个Object值
+        p.save(new SaveListener<String>() {
+            @Override
+            public void done(String objectId, BmobException e) {
+                if (e == null) {
+                    Log.i("bmob", "保存成功");
+                } else {
+                    Log.i("bmob", "保存失败：" + e.getMessage());
+                }
+            }
+
         });
     }
 
