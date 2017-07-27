@@ -47,21 +47,27 @@ public class Person extends BmobObject {
     public void setAge(int age) {
         this.age = age;
     }
+
     public static class BankCard {
         private String cardNumber;
         private String bankName;
+
         public String getCardNumber() {
             return cardNumber;
         }
+
         public void setBankName(String bankName) {
             this.bankName = bankName;
         }
+
         public void setCardNumber(String cardNumber) {
             this.cardNumber = cardNumber;
         }
+
         public String getBankName() {
             return bankName;
         }
+
         public BankCard(String bankName, String cardNumber) {
             this.bankName = bankName;
             this.cardNumber = cardNumber;
