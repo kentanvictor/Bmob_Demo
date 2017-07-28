@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 deleteSingleData();
                 break;
             case R.id.change_but1:
-                changeSingleData();
+                updateArray();
                 break;
             case R.id.search_but1:
                 /*querySingleData();*/
