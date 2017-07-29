@@ -8,7 +8,7 @@ import cn.bmob.v3.Bmob;
  * Created by KenTan on 2017/7/10.
  */
 
-public class App extends Application{
+public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
