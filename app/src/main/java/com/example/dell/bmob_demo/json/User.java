@@ -37,6 +37,7 @@ public class User extends BmobUser {
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
     }
+
     public boolean isEmailVerified() {
         return emailVerified;
     }
@@ -44,6 +45,7 @@ public class User extends BmobUser {
     public void setEmailVerified(boolean emailVerified) {
         this.emailVerified = emailVerified;
     }
+
     @Override
     public String getMobilePhoneNumber() {
         return mobilePhoneNumber;
@@ -52,6 +54,7 @@ public class User extends BmobUser {
     public void setMobilePhoneNumber(String mobilePhoneNumber) {
         this.mobilePhoneNumber = mobilePhoneNumber;
     }
+
     public boolean isMobilePhoneNumberVerified() {
         return mobilePhoneNumberVerified;
     }
