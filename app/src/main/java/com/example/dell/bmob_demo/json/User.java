@@ -13,6 +13,9 @@ public class User extends BmobUser {
     private boolean emailVerified;
     private String mobilePhoneNumber;
     private boolean mobilePhoneNumberVerified;
+    private Boolean sex;
+    private String nick;
+    private Integer age;
 
     public String getUserName() {
         return userName;
@@ -61,5 +64,29 @@ public class User extends BmobUser {
 
     public void setMobilePhoneNumberVerified(boolean mobilePhoneNumberVerified) {
         this.mobilePhoneNumberVerified = mobilePhoneNumberVerified;
+    }
+
+    public boolean getSex() {
+        return this.sex;
+    }
+
+    public void setSex(boolean sex) {
+        this.sex = sex;
+    }
+
+    public String getNick() {
+        return this.nick;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }
