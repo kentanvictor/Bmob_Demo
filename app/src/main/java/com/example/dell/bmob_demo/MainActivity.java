@@ -249,9 +249,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
+
     //用戶註冊
-    public void setUser()
-    {
+    public void setUser() {
         BmobUser user = new BmobUser();
         user.setUsername("sendi");
         user.setPassword("123456");
@@ -260,17 +260,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         user.signUp(new SaveListener<User>() {
             @Override
             public void done(User user, BmobException e) {
-                if(e == null)
-                {
-                    showToast("注册成功:" +user.toString());
-                }
-                else
-                {
-                    showToast("done:"+e);
+                if (e == null) {
+                    showToast("注册成功:" + user.toString());
+                } else {
+                    showToast("done:" + e);
                 }
             }
         });
     }
+
     //Toast
     public void showToast(CharSequence text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
