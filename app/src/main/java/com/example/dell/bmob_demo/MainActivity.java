@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.dell.bmob_demo.json.Person;
+import com.example.dell.bmob_demo.json.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 import cn.bmob.v3.BmobBatch;
 import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BatchResult;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
@@ -60,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 addArray();
 //                Intent intent = new Intent(MainActivity.this, AddActivity.class);
 //                startActivity(intent);
-////                addPlentyData();
+                addPlentyData();
                 break;
             case R.id.delete_but1:
                 deleteSingleData();
@@ -246,7 +248,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
-
+    //用戶註冊
+    public void setUser()
+    {
+        BmobUser user = new BmobUser();
+        user.setUsername("sendi");
+        user.setPassword("123456");
+        user.setEmail("sendi@gmail.com");
+        //不能用save方法進行註冊
+        user.signUp(new SaveListener<User>() {
+            @Override
+            public void done(User user, BmobException e) {
+                if(e == null)
+                {
+                    showToast("注册成功:" +user.toString());
+                }
+                else
+                {
+                    showToast("done:"+e);
+                }
+            }
+        });
+    }
     //Toast
     public void showToast(CharSequence text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
