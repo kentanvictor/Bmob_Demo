@@ -62,7 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 addArray();
 //                Intent intent = new Intent(MainActivity.this, AddActivity.class);
 //                startActivity(intent);
-                addPlentyData();
+//                addPlentyData();
+                setUser();
                 break;
             case R.id.delete_but1:
                 deleteSingleData();
