@@ -8,18 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.example.dell.bmob_demo.json.Person;
-import com.example.dell.bmob_demo.json.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.QueryListener;
-import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 
 public class Data extends AppCompatActivity {
@@ -63,25 +60,6 @@ public class Data extends AppCompatActivity {
                     showToast("bmob 保存成功");
                 } else {
                     showToast("bmob 保存失败：" + e.getMessage());
-                }
-            }
-        });
-    }
-
-    //用戶註冊
-    public void setUser() {
-        BmobUser user = new BmobUser();
-        user.setUsername("sendi");
-        user.setPassword("123456");
-        user.setEmail("sendi@gmail.com");
-        //不能用save方法進行註冊
-        user.signUp(new SaveListener<User>() {
-            @Override
-            public void done(User user, BmobException e) {
-                if (e == null) {
-                    showToast("注册成功:" + user.toString());
-                } else {
-                    showToast("done:" + e);
                 }
             }
         });

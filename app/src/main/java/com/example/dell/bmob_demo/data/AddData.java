@@ -5,12 +5,14 @@ import android.widget.Toast;
 
 import com.example.dell.bmob_demo.App;
 import com.example.dell.bmob_demo.json.Person;
+import com.example.dell.bmob_demo.json.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobBatch;
 import cn.bmob.v3.BmobObject;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BatchResult;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.QueryListListener;
@@ -94,6 +96,25 @@ public class AddData extends App {
                 }
             }
 
+        });
+    }
+
+    //用戶註冊
+    public void setUser() {
+        BmobUser user = new BmobUser();
+        user.setUsername("sendi");
+        user.setPassword("123456");
+        user.setEmail("sendi@gmail.com");
+        //不能用save方法進行註冊
+        user.signUp(new SaveListener<User>() {
+            @Override
+            public void done(User user, BmobException e) {
+                if (e == null) {
+                    showToast("注册成功:" + user.toString());
+                } else {
+                    showToast("done:" + e);
+                }
+            }
         });
     }
 
