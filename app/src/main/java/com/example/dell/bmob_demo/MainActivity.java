@@ -44,11 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.add_but:
-                /*addArray();*/
-//                Intent intent = new Intent(MainActivity.this, AddActivity.class);
-//                startActivity(intent);
-//                addPlentyData();
-                addData.addPlentyData();
+                addData.setUser();
                 break;
             case R.id.delete_but1:
                 user.deleteSingleData();
