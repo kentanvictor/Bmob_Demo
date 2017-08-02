@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.dell.bmob_demo.data.AddData;
 import com.example.dell.bmob_demo.data.Data;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int age;
     private String phoneNumber;
     Data user = new Data();
+    AddData addData = new AddData();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                Intent intent = new Intent(MainActivity.this, AddActivity.class);
 //                startActivity(intent);
 //                addPlentyData();
-                user.addPlentyData();
+                addData.addPlentyData();
                 break;
             case R.id.delete_but1:
                 user.deleteSingleData();
