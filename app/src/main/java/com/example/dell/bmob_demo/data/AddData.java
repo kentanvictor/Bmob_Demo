@@ -23,20 +23,20 @@ import cn.bmob.v3.listener.SaveListener;
  */
 
 public class AddData extends App {
-    //增加單個數據
-    public void addSingleData() {
-        Person p1 = new Person();
-        p1.setName("KenTan");
-        p1.setAge(23);
-        p1.setPhoneNumber("1231253242");
-        p1.setAddress("China");
-        p1.save(new SaveListener<String>() {
+    //增加單條數據
+    public void addSingleData(String name, String address, String number, int age) {
+        Person p2 = new Person();
+        p2.setName(name);
+        p2.setAddress(address);
+        p2.setPhoneNumber(number);
+        p2.setAge(age);
+        p2.save(new SaveListener<String>() {
             @Override
             public void done(String objectId, BmobException e) {
                 if (e == null) {
-                    showToast("創建數據成功:" + objectId);
+                    showToast("添加数据成功，返回objectId为：" + objectId);
                 } else {
-                    showToast("bmob 失敗:" + e.getMessage() + "," + e.getErrorCode());
+                    showToast( "创建数据失败：" + e.getMessage());
                 }
             }
         });

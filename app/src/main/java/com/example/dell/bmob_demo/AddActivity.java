@@ -8,12 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.example.dell.bmob_demo.json.Person;
-
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.SaveListener;
+import com.example.dell.bmob_demo.data.AddData;
 
 /*
  * Created by KenTan on 2017/7/10.
@@ -31,6 +27,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     private String number;
     private int age;
     private static final String TAG = "bao";
+    AddData user = new AddData();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,7 +51,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                 number = addPhone.getText().toString();
                 age = Integer.parseInt(addAge.getText().toString());
                 Log.i(TAG, "onClick: " + name);
-                addSingleData(name, address, number, age);
+                user.addSingleData(name, address, number, age);
                 break;
             default:
                 break;
@@ -68,24 +65,5 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         addAddress = (EditText) findViewById(R.id.address_edit1);
         addPhone = (EditText) findViewById(R.id.phone_number);
         addAge = (EditText) findViewById(R.id.age_edit1);
-    }
-
-    //增加單條數據
-    public void addSingleData(String name, String address, String number, int age) {
-        Person p2 = new Person();
-        p2.setName(name);
-        p2.setAddress(address);
-        p2.setPhoneNumber(number);
-        p2.setAge(age);
-        p2.save(new SaveListener<String>() {
-            @Override
-            public void done(String objectId, BmobException e) {
-                if (e == null) {
-                    Toast.makeText(AddActivity.this, "添加数据成功，返回objectId为：" + objectId, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(AddActivity.this, "创建数据失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 }
