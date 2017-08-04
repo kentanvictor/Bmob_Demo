@@ -36,7 +36,7 @@ public class AddData extends App {
                 if (e == null) {
                     showToast("添加数据成功，返回objectId为：" + objectId);
                 } else {
-                    showToast( "创建数据失败：" + e.getMessage());
+                    showToast("创建数据失败：" + e.getMessage());
                 }
             }
         });
