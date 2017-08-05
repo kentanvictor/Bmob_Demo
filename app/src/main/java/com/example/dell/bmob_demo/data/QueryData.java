@@ -23,6 +23,7 @@ public class QueryData extends App {
     private String address;
     private int age;
     private String phoneNumber;
+
     //查詢單條數據
     public void querySingleData() {
         BmobQuery<Person> p1 = new BmobQuery<>();

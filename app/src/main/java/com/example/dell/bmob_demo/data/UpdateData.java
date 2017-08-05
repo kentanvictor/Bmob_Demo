@@ -18,6 +18,7 @@ import cn.bmob.v3.listener.UpdateListener;
 
 public class UpdateData extends App {
     private Object objectId;
+
     //更新數組數據
     public void updateArray() {
         Person p2 = new Person();
