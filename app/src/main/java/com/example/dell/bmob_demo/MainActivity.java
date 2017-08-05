@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.dell.bmob_demo.data.AddData;
-import com.example.dell.bmob_demo.data.Data;
+import com.example.dell.bmob_demo.data.DeleteData;
+import com.example.dell.bmob_demo.data.QueryData;
+import com.example.dell.bmob_demo.data.UpdateData;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Button add;
@@ -19,8 +21,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String address;
     private int age;
     private String phoneNumber;
-    Data user = new Data();
     AddData addData = new AddData();
+    DeleteData deleteData = new DeleteData();
+    QueryData queryData = new QueryData();
+    UpdateData updateData = new UpdateData();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +51,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 addData.setUser();
                 break;
             case R.id.delete_but1:
-                user.deleteSingleData();
+                deleteData.deleteSingleData();
                 break;
             case R.id.change_but1:
-                user.updateArray();
+                updateData.updateArray();
                 break;
             case R.id.search_but1:
                 /*querySingleData();*/
-                user.queryPlentyData();
+                queryData.queryPlentyData();
                 break;
             default:
                 break;
