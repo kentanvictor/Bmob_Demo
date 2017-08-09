@@ -1,12 +1,9 @@
 package com.example.dell.bmob_demo.data;
 
 import android.widget.Toast;
-
 import com.example.dell.bmob_demo.App;
 import com.example.dell.bmob_demo.json.Person;
-
 import java.util.List;
-
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
