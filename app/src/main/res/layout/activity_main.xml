@@ -18,18 +18,13 @@
             android:id="@+id/btn_back"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
             android:background="@drawable/btn_back_selector" />
 
         <Button
             android:id="@+id/btn_true"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
             android:background="@drawable/btn_true_selector" />
     </android.support.v7.widget.Toolbar>
 
