@@ -2,14 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/add"
+        android:icon="@mipmap/ic_add"
         android:title="@string/it1" />
     <item
         android:id="@+id/delete"
+        android:icon="@mipmap/ic_delete"
         android:title="@string/it2" />
     <item
         android:id="@+id/query"
+        android:icon="@mipmap/ic_query"
         android:title="@string/it3" />
     <item
         android:id="@+id/change"
+        android:icon="@mipmap/ic_change"
         android:title="@string/it4" />
 </menu>
