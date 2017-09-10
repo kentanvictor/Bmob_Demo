@@ -7,8 +7,8 @@ import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
-/**
- * Created by DELL on 2017/9/10.
+/*
+ * Created by JohnnyTan on 2017/9/10.
  */
 
 public class BottomNavigationViewBehavior extends CoordinatorLayout.Behavior<View> {
@@ -40,7 +40,7 @@ public class BottomNavigationViewBehavior extends CoordinatorLayout.Behavior<Vie
     public boolean onDependentViewChanged(CoordinatorLayout parent, View child, View dependency) {
 
         //得到依赖View的滑动距离
-        int top = ((AppBarLayout.Behavior)((CoordinatorLayout.LayoutParams)dependency.getLayoutParams()).getBehavior()).getTopAndBottomOffset();
+        int top = ((AppBarLayout.Behavior) ((CoordinatorLayout.LayoutParams) dependency.getLayoutParams()).getBehavior()).getTopAndBottomOffset();
         //因为BottomNavigation的滑动与ToolBar是反向的，所以取-top值
         ViewCompat.setTranslationY(child, -top);
         return false;
