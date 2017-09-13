@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
+        initViewData();
         /*
         add.setOnClickListener(this);
         search.setOnClickListener(this);
@@ -71,11 +72,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mBottomNavigationView.setTranslationY(-verticalOffset);
             }
         });*/
-
     private void initViewData() {
 
         List<ContentFragment> fragments = new ArrayList<>();
-        for(int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {
             fragments.add(ContentFragment.newInstance(i));
         }
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mViewPaper.setAdapter(adapter);
         mTabLayout.setupWithViewPager(mViewPaper);
     }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

@@ -37,10 +37,11 @@ public class ContentAdapter extends CommonRecyclerViewAdapter{
 
     }
 
-    public void onBindItemViewHolder(CommonViewHolder holder, int position, String item) {
-
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position, List payloads) {
+        super.onBindViewHolder(holder, position, payloads);
         ContentViewHolder viewHolder = (ContentViewHolder) holder;
-        viewHolder.mTextView.setText((CharSequence) mList.get(position));
+        viewHolder.mTextView.setText((CharSequence) payloads.get(position));
     }
 
     @Override
