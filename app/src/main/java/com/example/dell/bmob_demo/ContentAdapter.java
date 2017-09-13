@@ -16,7 +16,7 @@ import cn.ittiger.recyclerview.CommonViewHolder;
  * Created by JohnnyTan on 2017/9/13.
  */
 
-public class ContentAdapter extends CommonRecyclerViewAdapter{
+public class ContentAdapter extends CommonRecyclerViewAdapter {
     private Context mContext;
 
     public ContentAdapter(Context context, List<String> list) {
@@ -51,6 +51,7 @@ public class ContentAdapter extends CommonRecyclerViewAdapter{
 
     class ContentViewHolder extends CommonViewHolder {
         TextView mTextView;
+
         public ContentViewHolder(View itemView) {
 
             super(itemView);

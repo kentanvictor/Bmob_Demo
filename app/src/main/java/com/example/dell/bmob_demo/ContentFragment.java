@@ -56,7 +56,7 @@ public class ContentFragment extends Fragment {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
         List<String> list = new ArrayList<>();
-        for(int i = 0; i < 30; i++) {
+        for (int i = 0; i < 30; i++) {
             list.add("Fragment " + mFragmentIndex + ", 第" + (i + 1) + "条数据");
         }
 

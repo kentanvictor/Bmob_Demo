@@ -10,13 +10,14 @@ import java.util.List;
  * Created by JohnnyTan on 2017/9/13.
  */
 
-public class ContentFragmentAdapter extends FragmentPagerAdapter{
+public class ContentFragmentAdapter extends FragmentPagerAdapter {
     private List<ContentFragment> mFragments;
 
     public ContentFragmentAdapter(List<ContentFragment> fragments, FragmentManager fm) {
         super(fm);
         this.mFragments = fragments;
     }
+
     @Override
     public Fragment getItem(int position) {
         return mFragments.get(position);
