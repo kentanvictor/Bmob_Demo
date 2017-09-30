@@ -43,11 +43,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         init();
         initViewData();
-        /*
-        add.setOnClickListener(this);
-        search.setOnClickListener(this);
-        delete.setOnClickListener(this);
-        change.setOnClickListener(this);*/
     }
 
     public void init() {
@@ -55,10 +50,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mViewPaper = (ViewPager) findViewById(R.id.viewpaper);
         mBottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
         mAppBarLayout = (AppBarLayout) findViewById(R.id.appBarLayout);
-        /*add = (Button) findViewById(R.id.add_but);
-        delete = (Button) findViewById(R.id.delete_but1);
-        change = (Button) findViewById(R.id.change_but1);
-        search = (Button) findViewById(R.id.search_but1);*/
     }
 
 
